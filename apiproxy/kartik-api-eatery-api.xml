@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="kartik-api-eatery-api">
+    <Basepaths>/diego-api-eatery-api</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1507934563655</CreatedAt>
+    <CreatedBy>infra-engineering@sidglobal.net</CreatedBy>
+    <Description></Description>
+    <DisplayName>diego-api-eatery-api</DisplayName>
+    <LastModifiedAt>1507934657833</LastModifiedAt>
+    <LastModifiedBy>infra-engineering@sidglobal.net</LastModifiedBy>
+    <Policies>
+        <Policy>Access-Entity</Policy>
+        <Policy>Assign-Message-Set-Content-Type</Policy>
+        <Policy>Basic-Authentication-Set-Authorization-Header</Policy>
+        <Policy>Extract-Variables-Truck-Id</Policy>
+        <Policy>Flow-Callout-Standard-Policies</Policy>
+        <Policy>JSON-Threat-Protection</Policy>
+        <Policy>JavaScript-Get-Apikey</Policy>
+        <Policy>JavaScript-Set-Response</Policy>
+        <Policy>Key-Value-Map-Operations-Retrieve-Credentials</Policy>
+        <Policy>OAuth-v20-Verify-Token</Policy>
+        <Policy>Quota</Policy>
+        <Policy>Raise-Fault-Not-Found</Policy>
+        <Policy>Response-Cache-Get-Chefs-Chef-Id</Policy>
+        <Policy>Response-Cache</Policy>
+        <Policy>Service-Callout-Get-Truck</Policy>
+        <Policy>Spike-Arrest</Policy>
+        <Policy>Verify-API-Key</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://JavaScript-Get-Apikey.js</Resource>
+        <Resource>jsc://JavaScript-Set-Response.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>

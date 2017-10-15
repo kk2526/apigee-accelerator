@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BasicAuthentication async="false" continueOnError="false" enabled="true" name="Basic-Authentication-Set-Authorization-Header">
+    <DisplayName>Basic Authentication-Set-Authorization-Header</DisplayName>
+    <Operation>Encode</Operation>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <User ref="private.username"/>
+    <Password ref="private.password"/>
+    <AssignTo createNew="true">request.header.Authorization</AssignTo>
+    <Source>request.header.Authorization</Source>
+</BasicAuthentication>

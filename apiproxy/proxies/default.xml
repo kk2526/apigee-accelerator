@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Spike-Arrest</Name>
+            </Step>
+            <Step>
+                <Name>Verify-API-Key</Name>
+            </Step>
+            <Step>
+                <Name>Access-Entity</Name>
+            </Step>
+            <Step>
+                <Name>Quota</Name>
+            </Step>
+            <Step>
+                <Name>Key-Value-Map-Operations-Retrieve-Credentials</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="Flow-GET-Chefs">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Response-Cache</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>Response-Cache</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/chefs") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Flow-POST-Chefs">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Assign-Message-Set-Content-Type</Name>
+                </Step>
+                <Step>
+                    <Name>JSON-Threat-Protection</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/chefs") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Flow-GET-Truck/{truck_id}">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>Response-Cache-Get-Chefs-Chef-Id</Name>
+                </Step>
+                <Step>
+                    <Name>Extract-Variables-Truck-Id</Name>
+                </Step>
+                <Step>
+                    <Name>Service-Callout-Get-Truck</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JavaScript-Set-Response</Name>
+                </Step>
+                <Step>
+                    <Name>Response-Cache-Get-Chefs-Chef-Id</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/trucks/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Flow-Catch-All">
+            <Description>Catch-All</Description>
+            <Request>
+                <Step>
+                    <Name>Raise-Fault-Not-Found</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>1=1</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/kartik-secured-backend</BasePath>
+        <Properties/>
+        <VirtualHost>gateway-api</VirtualHost>
+        <!-- <VirtualHost>secure</VirtualHost> -->
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <Condition>(proxy.pathsuffix MatchesPath "/chefs")</Condition>
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+    <RouteRule name="no_route"/>
+</ProxyEndpoint>
