@@ -5,7 +5,7 @@
 	<groupId>com.sidgs</groupId>
 	<artifactId>ts-product</artifactId>
 	<version>1.0.0</version>
-	<name>ts-product</name>
+	<name>kartik-api-eatery-api</name>
 	<packaging>pom</packaging>
 	<!-- Test -->
 	<pluginRepositories>
@@ -44,7 +44,7 @@
 				<apigee.env>dev</apigee.env>
 				<!-- Mgmt console  -->
 				<apigee.hosturl>http://edge.sidgs.net:8080</apigee.hosturl>
-				<apigee.apiversion>v2</apigee.apiversion>
+				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.org>sidgs</apigee.org>
 				<apigee.username>kartikk@sidglobal.net</apigee.username>
 				<apigee.password>${password}</apigee.password>
